@@ -1,0 +1,25 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+        "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+        
+        
+<beans>
+<bean id="check" class="com.SpringAOP.Check"/>
+<bean id="AuthenticationAspect" class="com.SpringAOP.Authentication"/>
+
+
+<bean id ="proxyFactoryBean" class="org.springframework.aop.framework.ProxyFactoryBean">
+<property name="proxyInterfaces" value="com.SpringAOP.Login"/>
+<property name="interceptorNames" >
+
+		<list>
+		<value>AuthenticationAspect</value>
+		</list>
+		</property>
+
+<property name="target" >
+<ref bean="check"/>
+</property>
+
+</bean>
+
+</beans>
